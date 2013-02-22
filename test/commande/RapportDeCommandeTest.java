@@ -41,4 +41,22 @@ public class RapportDeCommandeTest {
     }
 
 
+    @Test
+    public void prixTotal() {
+        // je n'aime pas trop ce test, mais avec la façon que Java fonctionne
+        // on ne peu pas Stubber des methode static
+        Commande commande1 = new Commande(10,mock(Date.class));
+        Commande commande2 = new Commande(10,mock(Date.class));
+
+        Commande.viderListe();
+        commande1.sauvegarder();
+        commande2.sauvegarder();
+
+        Intervalle intervalle = mock(Intervalle.class);
+        when(intervalle.estCompris(commande1.date)).thenReturn(true);
+        when(intervalle.estCompris(commande2.date)).thenReturn(true);
+        
+        RapportDeCommande rapport = new RapportDeCommande(intervalle);
+        assertThat(rapport.prixTotal(), is(20));
+    }
 }

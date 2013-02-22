@@ -9,6 +9,13 @@ public class RapportDeCommande {
         this.commandes = obtenirCommandesDans(intervalle);
     }
 
+    public int prixTotal(){
+        int total = 0;
+        for(Commande commande : commandes){
+            total += commande.prix;
+        }
+        return total;
+    }
 
     protected static Commande[] obtenirCommandesDans(Intervalle intervalle){
         ArrayList<Commande> commandes = new ArrayList<Commande>();
