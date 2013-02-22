@@ -6,8 +6,6 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
-import java.util.Date;
-
 public class RapportDeCommandeTest {
 
     public RapportDeCommandeTest() {
@@ -15,10 +13,9 @@ public class RapportDeCommandeTest {
 
     @Test
     public void nouveauRapport() {
-        Date debut = mock(Date.class);
-        Date fin = mock(Date.class);
+        Intervalle intervalle = mock(Intervalle.class);
 
-        RapportDeCommande rapport = new RapportDeCommande(debut,fin);
+        RapportDeCommande rapport = new RapportDeCommande(intervalle);
         assertThat(rapport, is(instanceOf(RapportDeCommande.class)));
     }
 }

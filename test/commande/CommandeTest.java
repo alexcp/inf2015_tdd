@@ -7,7 +7,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class CommandeTest {
     Commande commande;
