@@ -15,18 +15,6 @@ public class Commande {
         listeDesCommande.clear();
     }
 
-    public static Commande[] obtenirCommandesDans(Intervalle intervalle){
-        ArrayList<Commande> commandes = new ArrayList<Commande>();
-
-        for(Commande commande : listeDesCommande){
-            if(commande.estInclusDans(intervalle)){
-                commandes.add(commande);
-            }
-        }
-
-        return commandes.toArray(new Commande[commandes.size()]);
-    }
-
     public Commande(int prix, Date date){
         this.date = date;
         this.prix = prix;

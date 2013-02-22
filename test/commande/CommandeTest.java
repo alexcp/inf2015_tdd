@@ -50,24 +50,12 @@ public class CommandeTest {
     }
 
     @Test
-    public void commandesDansIntervalle(){
-        //On ajoute la commande a la liste
-        commande.sauvegarder();
-
-        //On fait un mock de Intervalle
-        Intervalle intervalle = mock(Intervalle.class);
-        
+    public void dansIntervalle(){
         // Ici on fait un "stub"
         // Quand notre mock reçois la methode estCompris avec la valeur
         // de commande.date on renvois vrai.
         //
         // La méthode estCompris est testé dans IntervalleTest
-        when(intervalle.estCompris(commande.date)).thenReturn(true);
-        assertThat(Commande.obtenirCommandesDans(intervalle), hasItemInArray(commande));
-    }
-
-    @Test
-    public void dansIntervalle(){
         Intervalle intervalle = mock(Intervalle.class);
         when(intervalle.estCompris(commande.date)).thenReturn(true);
 
