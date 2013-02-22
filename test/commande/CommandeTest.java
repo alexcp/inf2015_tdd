@@ -51,21 +51,27 @@ public class CommandeTest {
     }
 
     @Test
-    public void commandeDansIntervalle() throws Exception{
-        SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd");
-        Date debut = dateParser.parse("2013-02-10");
-        Date fin = dateParser.parse("2013-02-20");
+    public void commandesDansIntervalle(){
+        //On ajoute la commande a la liste
+        commande.sauvegarder();
 
-        Commande.obtenirCommandesDansIntervalle(debut, fin);
+        //On fait un mock de Intervalle
+        Intervalle intervalle = mock(Intervalle.class);
+        
+        // Ici on fait un "stub"
+        // Quand notre mock reçois la methode estCompris avec la valeur
+        // de commande.date on renvois vrai.
+        //
+        // La méthode estCompris est testé dans IntervalleTest
+        when(intervalle.estCompris(commande.date)).thenReturn(true);
+        assertThat(Commande.obtenirCommandesDans(intervalle), hasItemInArray(commande));
     }
 
     @Test
-    public void dansIntervalle() throws Exception{
-        SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd");
-        Date debut = dateParser.parse("2013-02-10");
-        Date fin = dateParser.parse("2013-02-20");
+    public void dansIntervalle(){
+        Intervalle intervalle = mock(Intervalle.class);
+        when(intervalle.estCompris(commande.date)).thenReturn(true);
 
-        Commande commande = new Commande(10,dateParser.parse("2013-02-15"));
-        assertTrue(commande.dansIntervalle(debut,fin));
+        assertTrue(commande.estInclusDans(intervalle));
     }
 }

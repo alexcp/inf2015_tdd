@@ -15,11 +15,11 @@ public class Commande {
         listeDesCommande.clear();
     }
 
-    public static Commande[] obtenirCommandesDansIntervalle(Date debut, Date fin){
+    public static Commande[] obtenirCommandesDans(Intervalle intervalle){
         ArrayList<Commande> commandes = new ArrayList<Commande>();
 
         for(Commande commande : listeDesCommande){
-            if(commande.dansIntervalle(debut, fin)){
+            if(commande.estInclusDans(intervalle)){
                 commandes.add(commande);
             }
         }
@@ -42,8 +42,7 @@ public class Commande {
         return date.hashCode();
     }
 
-    public boolean dansIntervalle(Date debut, Date fin){
-        return date.compareTo(debut) >= 0 && date.compareTo(fin) <= 0;
+    public boolean estInclusDans(Intervalle intervalle){
+        return intervalle.estCompris(date);
     }
-
 }
